@@ -1,0 +1,189 @@
+<html>
+
+<head>
+ <title>ViaCEP Webservice</title>
+ 	<!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Playball%7CBitter" rel="stylesheet">
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 	<!-- Stylesheets -->
+  <link href="./css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+<!-- Inicio do formulario -->
+ <!-- <div class="container">
+  <form method="get" action=".">
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">CEP</label>
+    </div>
+    <div class="col-75">
+      <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+    onblur="pesquisacep(this.value);"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">RUA</label>
+    </div>
+    <div class="col-75">
+      <input name="rua" type="text" id="rua" size="60" readonly/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">BAIRRO</label>
+    </div>
+    <div class="col-75">
+      <input name="bairro" type="text" id="bairro" size="40" readonly/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">CIDADE</label>
+    </div>
+    <div class="col-75">
+      <input name="cidade" type="text" id="cidade" size="40" readonly/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">ESTADO</label>
+    </div>
+    <div class="col-75">
+      <input name="uf" type="text" id="uf" size="2" readonly/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">IBGE</label>
+    </div>
+    <div class="col-75">
+      <input name="ibge" type="text" id="ibge" size="8" readonly/>
+    </div>
+  </div>
+  <bR>
+  <div class="row">
+    <input type="submit" value="ENVIAR">
+  </div>
+  </form>
+</div> -->
+
+<!-- Button trigger modal -->
+<div class="container">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Consultar CEP
+  </button>
+</div>
+<div class="container">
+  <button id="error" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
+    erro
+  </button>
+</div>
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Erro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form method="get" action=".">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">Erro ao ler o CEP indicado!</label>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"data-dismiss="modal">ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Digite seu Cep</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <form method="get" action=".">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname">CEP</label>
+            </div>
+            <div class="col-75">
+              <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+            onblur="pesquisacep(this.value);"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">RUA</label>
+            </div>
+            <div class="col-75">
+              <input name="rua" type="text" id="rua" size="60" readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">BAIRRO</label>
+            </div>
+            <div class="col-75">
+              <input name="bairro" type="text" id="bairro" size="40" readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">CIDADE</label>
+            </div>
+            <div class="col-75">
+              <input name="cidade" type="text" id="cidade" size="40" readonly/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname">ESTADO</label>
+            </div>
+            <div class="col-75">
+              <input name="uf" type="text" id="uf" size="2" readonly/>
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-25">
+              <label for="lname">IBGE</label>
+            </div>
+            <div class="col-75">
+              <input name="ibge" type="text" id="ibge" size="8" readonly/>
+            </div>
+          </div> -->
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="./js/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>
